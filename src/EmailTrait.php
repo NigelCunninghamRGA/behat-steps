@@ -378,10 +378,11 @@ trait EmailTrait {
     // @note: For some unknown reasons, we do not need to reset this back to
     // the original values after the test. The values in the configuration
     // will not be overridden.
+    // Don't change the formatter. We might break email formatting by using a
+    // different formatter.
     if (\Drupal::service('module_handler')->moduleExists('mailsystem')) {
       \Drupal::configFactory()->getEditable('mailsystem.settings')
         ->set('defaults.sender', $value)
-        ->set('defaults.formatter', $value)
         ->save();
     }
   }
